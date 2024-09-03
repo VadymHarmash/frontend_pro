@@ -1,5 +1,8 @@
-const firstPrompt = prompt("What is your name?");
-const secondPrompt = prompt("How old are you");
-const thirdPrompt = prompt("Where are you from?");
+const fullNumber = prompt("Please, enter a number")
+const firstNumber = Math.floor(fullNumber / 10000 % 10);
+const secondNumber = Math.floor(fullNumber / 1000 % 10);
+const thirdNumber = Math.floor(fullNumber / 100 % 10);
+const fourthNumber = Math.floor(fullNumber / 10 % 10);
+const fifthNumber = fullNumber % 10;
 
-console.log(`Your name is ${firstPrompt}, you are ${secondPrompt} years old, and you live in ${thirdPrompt}`);
+console.log(`${firstNumber} ${secondNumber} ${thirdNumber} ${fourthNumber} ${fifthNumber}`);
