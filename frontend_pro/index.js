@@ -27,8 +27,6 @@ document.querySelector('#addButton').addEventListener('click', () => {
     checkIfListIsEmpty();
   });
 
-  console.log('s')
-
   todoList.appendChild(todoListItem);
   checkIfListIsEmpty();
 });
