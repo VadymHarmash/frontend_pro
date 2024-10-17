@@ -2,9 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/index.css" />
     <title>Title</title>
 </head>
 <body>
+    <div class="slider">
+        <button class="slider__button" id="btn-prev">&lt;</button>
+        <div class="slider__wrapper">
+            <div class="slider__item active" id="item-1">
+                <img src="./images/html.png" alt="HTML">
+                <div class="slider__content">
+                    <h2>HTML</h2>
+                    <p>Hypertext Markup Language (HTML) is the standard markup language for documents designed to be displayed in a web browser. It defines the content and structure of web content. It is often assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.</p>
+                </div>
+            </div>
+            <div class="slider__item" id="item-2">
+                <img src="./images/css.png" alt="CSS">
+                <div class="slider__content">
+                    <h2>CSS</h2>
+                    <p>Cascading Style Sheets (CSS) is a style sheet language used for specifying the presentation and styling of a document written in a markup language such as HTML or XML</p>
+                </div>
+            </div>
+            <div class="slider__item" id="item-3">
+                <img src="./images/js.png" alt="JS">
+                <div class="slider__content">
+                    <h2>JavaScript</h2>
+                    <p>JavaScript is a multi-paradigm, dynamic language with types and operators, standard built-in objects, and methods</p>
+                </div>
+            </div>
+        </div>
+        <button class="slider__button" id="btn-next">&gt;</button>
+    </div>
+    <div class="indicators">
+        <div class="indicator active-indicator" id="indicator-1"></div>
+        <div class="indicator" id="indicator-2"></div>
+        <div class="indicator" id="indicator-3"></div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
