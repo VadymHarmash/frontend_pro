@@ -6,7 +6,7 @@ const totalItems = slider.querySelectorAll('.slider__item').length;
 
 let activeItem = 1;
 
-btnPrev.classList.add('hidden')
+btnPrev.classList.add('hidden');
 
 btnNext.addEventListener('click', () => {
   if (activeItem < totalItems) {
@@ -25,7 +25,7 @@ btnPrev.addEventListener('click', () => {
 indicatorWrapper.addEventListener('click', (e) => {
   if(e.target !== e.currentTarget) {
     activeItem = +e.target.id.slice(e.target.id.length - 1);
-    updateSlider()
+    updateSlider();
   }
 })
 
