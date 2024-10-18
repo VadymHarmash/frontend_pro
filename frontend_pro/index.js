@@ -29,6 +29,14 @@ indicatorWrapper.addEventListener('click', (e) => {
   }
 })
 
+for(let i = 0; i < totalItems; i++) {
+  const indicator = document.createElement('div');
+  indicator.classList.add('indicator');
+  indicator.id = `indicator-${i + 1}`;
+  indicatorWrapper.appendChild(indicator);
+  updateSlider();
+}
+
 function updateSlider() {
   activeItem === totalItems ? btnNext.classList.add('hidden') : btnNext.classList.remove('hidden');
   activeItem === 1 ? btnPrev.classList.add('hidden') : btnPrev.classList.remove('hidden');
