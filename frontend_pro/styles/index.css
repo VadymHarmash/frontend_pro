@@ -43,15 +43,23 @@ html, body {
     word-break: break-word;
 }
 
-.todoList__item:last-child {
-    border-bottom: none;
+.todoList__item__text {
+    flex: 1;
+    width: 80%;
+    margin-right: 10px;
 }
 
-.todoList__item:hover {
-    background-color: #f9f9f9;
+.todoList__item__text-done {
+    text-decoration: line-through;
 }
 
-.deleteButton{
+.todoList__item__checkbox {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.deleteButton {
     min-width: 15%;
     padding: 10px;
     background-color: #007bff;
@@ -61,6 +69,14 @@ html, body {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.todoList__item:last-child {
+    border-bottom: none;
+}
+
+.todoList__item:hover {
+    background-color: #f9f9f9;
 }
 
 .textInput {
