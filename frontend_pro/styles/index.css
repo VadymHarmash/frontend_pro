@@ -42,8 +42,7 @@ body{
     padding: 0;
 }
 
-.weather__image{
-    position: absolute;
-    top: 5px;
-    left: 200px;
+.weather__footer{
+    display: flex;
+    gap: 6px;
 }
