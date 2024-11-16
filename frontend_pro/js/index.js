@@ -1,3 +1,5 @@
+import { loadComments } from "./loadComments.js";
+
 const api = 'https://jsonplaceholder.typicode.com/posts';
 const postsList = document.querySelector('#posts');
 let userId = 1;
@@ -7,32 +9,6 @@ fetch(`${api}?_limit=10`).then(response => response.json()).then(data => {
     generatePost(post);
   });
 });
-
-const loadComments = (postId, postComments) => {
-  fetch(`${api}/${postId}/comments?_limit=2`).then(response => response.json()).then(data => {
-    data.forEach((comment) => {
-      generateComment(comment, postComments);
-    });
-  });
-};
-
-const generateComment = (commentData, postComments) => {
-  const postAuthor = document.createElement('h4');
-  const postEmail = document.createElement('p');
-  const postComment = document.createElement('li');
-
-  postAuthor.classList.add('comment__author');
-  postEmail.classList.add('comment__email');
-  postComment.classList.add('comment__body');
-
-  postAuthor.innerText = commentData.name;
-  postEmail.innerText = `(${commentData.email})`;
-  postComment.innerText = commentData.body;
-
-  postComments.appendChild(postAuthor);
-  postComments.appendChild(postEmail);
-  postComments.appendChild(postComment);
-};
 
 const generatePost = (postsData) => {
   const post = document.createElement('li');
@@ -57,7 +33,7 @@ const generatePost = (postsData) => {
   post.appendChild(postButton);
 
   postButton.addEventListener('click', () => {
-    loadComments(postsData.id, postComments);
+    loadComments(api, postsData.id, postComments);
     postButton.disabled = true;
   });
 
