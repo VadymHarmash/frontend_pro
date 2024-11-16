@@ -1,4 +1,10 @@
+import { addPost } from "./api.js";
+
 const postsList = document.querySelector('#posts');
+const postsForm = document.querySelector('#posts__form');
+const formTitle = document.querySelector('#posts__title');
+const formBody = document.querySelector('#posts__body');
+let userId = 1;
 
 const generatePost = (postsData, handleLoadComments) => {
   const post = document.createElement('li');
@@ -54,4 +60,30 @@ const clearForm = (formTitle, formBody) => {
   formBody.value = '';
 };
 
-export { generatePost, generateComment, clearForm };
+const setupFormSubmit = (handleLoadComments) => {
+  postsForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newPostTitle = formTitle.value;
+    const newPostBody = formBody.value;
+    const newPost = {
+      title: newPostTitle,
+      body: newPostBody,
+      userId
+    };
+
+    if (newPostTitle && newPostBody) {
+      try {
+        const addedPost = await addPost(newPost);
+
+        if (addedPost) {
+          generatePost(addedPost, handleLoadComments);
+          clearForm(formTitle, formBody);
+        }
+      } catch (error) {
+        console.log('Error while adding post:', error);
+      }
+    }
+  });
+};
+
+export { generatePost, generateComment, setupFormSubmit };

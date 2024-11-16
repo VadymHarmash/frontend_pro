@@ -1,7 +1,5 @@
-import { loadData, loadComments, addPost } from "./api.js";
-import { generatePost, generateComment, clearForm } from "./dom.js";
-
-let userId = 1;
+import { loadData, loadComments } from "./api.js";
+import { generatePost, generateComment, setupFormSubmit } from "./dom.js";
 
 const handleLoadData = async () => {
   try {
@@ -10,7 +8,7 @@ const handleLoadData = async () => {
       posts.forEach(post => generatePost(post, handleLoadComments));
     }
   } catch (error) {
-    console.error('Error while loading posts:', error);
+    console.log('Error while loading posts:', error);
   }
 };
 
@@ -22,34 +20,10 @@ const handleLoadComments = async (postId, postComments, postButton) => {
       postButton.disabled = true;
     }
   } catch (error) {
-    console.error('Error while loading comments:', error);
+    console.log('Error while loading comments:', error);
   }
 };
 
-document.querySelector('#posts__form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formTitle = document.querySelector('#posts__title');
-  const formBody = document.querySelector('#posts__body');
-  const newPostTitle = formTitle.value;
-  const newPostBody = formBody.value;
-  const newPost = {
-    title: newPostTitle,
-    body: newPostBody,
-    userId
-  };
-
-  if (newPostTitle && newPostBody) {
-    try {
-      const addedPost = await addPost(newPost);
-
-      if (addedPost) {
-        generatePost(addedPost, handleLoadComments);
-        clearForm(formTitle, formBody);
-      }
-    } catch (error) {
-      console.error('Error while adding post:', error);
-    }
-  }
-});
+setupFormSubmit(handleLoadComments);
 
 handleLoadData();
