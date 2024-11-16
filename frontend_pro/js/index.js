@@ -1,14 +1,38 @@
-import { loadComments } from "./loadComments.js";
+import { loadData, loadComments, addPost } from "./api.js";
 
-const api = 'https://jsonplaceholder.typicode.com/posts';
 const postsList = document.querySelector('#posts');
 let userId = 1;
 
-fetch(`${api}?_limit=10`).then(response => response.json()).then(data => {
-  data.forEach((post) => {
-    generatePost(post);
-  });
-});
+const loadInitialData = async () => {
+  try {
+    const posts = await loadData();
+    if (posts) {
+      posts.forEach(post => generatePost(post));
+    }
+  } catch (error) {
+    console.error('Error while loading posts:', error);
+  }
+};
+
+const generateComment = (commentData, postComments) => {
+  const postAuthor = document.createElement('h4');
+  const postEmail = document.createElement('p');
+  const postComment = document.createElement('li');
+
+  commentData.forEach(comment => {
+    postAuthor.classList.add('comment__author');
+    postEmail.classList.add('comment__email');
+    postComment.classList.add('comment__body');
+
+    postAuthor.innerText = comment.name;
+    postEmail.innerText = comment.email;
+    postComment.innerText = comment.body;
+
+    postComments.appendChild(postAuthor);
+    postComments.appendChild(postEmail);
+    postComments.appendChild(postComment);
+  })
+};
 
 const generatePost = (postsData) => {
   const post = document.createElement('li');
@@ -32,8 +56,9 @@ const generatePost = (postsData) => {
   post.appendChild(postComments);
   post.appendChild(postButton);
 
-  postButton.addEventListener('click', () => {
-    loadComments(api, postsData.id, postComments);
+  postButton.addEventListener('click', async () => {
+    const loadedComment = await loadComments(postsData.id);
+    if(loadedComment) generateComment(loadedComment, postComments)
     postButton.disabled = true;
   });
 
@@ -41,7 +66,7 @@ const generatePost = (postsData) => {
   userId++;
 };
 
-document.querySelector('#posts__form').addEventListener('submit', (e) => {
+document.querySelector('#posts__form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const formTitle = document.querySelector('#posts__title');
   const formBody = document.querySelector('#posts__body');
@@ -53,17 +78,20 @@ document.querySelector('#posts__form').addEventListener('submit', (e) => {
     userId
   }
 
-  if(newPostTitle && newPostBody) {
-    fetch(api, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newPost),
-    }).then(response => response.json()).then(data => {
-      generatePost(data);
-      formTitle.value = '';
-      formBody.value = '';
-    }).catch(error => console.error('Error:', error));
+  if (newPostTitle && newPostBody) {
+    try {
+      const addedPost = await addPost(newPost);
+
+      if (addedPost) {
+        generatePost(addedPost);
+
+        formTitle.value = '';
+        formBody.value = '';
+      }
+    } catch (error) {
+      console.error('Error while adding post:', error);
+    }
   }
 });
+
+loadInitialData();
