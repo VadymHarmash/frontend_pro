@@ -1,50 +1,29 @@
 import { loadData, loadComments, addPost } from "./api.js";
-import { generateComment } from "./dom.js";
+import { generatePost, generateComment, clearForm } from "./dom.js";
 
-const postsList = document.querySelector('#posts');
 let userId = 1;
 
-const loadInitialData = async () => {
+const handleLoadData = async () => {
   try {
     const posts = await loadData();
     if (posts) {
-      posts.forEach(post => generatePost(post));
+      posts.forEach(post => generatePost(post, handleLoadComments));
     }
   } catch (error) {
     console.error('Error while loading posts:', error);
   }
 };
 
-const generatePost = (postsData) => {
-  const post = document.createElement('li');
-  const postTitle = document.createElement('p');
-  const postText = document.createElement('p');
-  const postComments = document.createElement('ul');
-  const postButton = document.createElement('button');
-
-  post.classList.add('post');
-  postTitle.classList.add('post__title');
-  postText.classList.add('post__body');
-  postComments.classList.add('post__comments');
-  postButton.classList.add('post__button');
-
-  postTitle.innerText = postsData.title;
-  postText.innerText = postsData.body;
-  postButton.innerText = 'Load comments';
-
-  post.appendChild(postTitle);
-  post.appendChild(postText);
-  post.appendChild(postComments);
-  post.appendChild(postButton);
-
-  postButton.addEventListener('click', async () => {
-    const loadedComment = await loadComments(postsData.id);
-    if(loadedComment) generateComment(loadedComment, postComments)
-    postButton.disabled = true;
-  });
-
-  postsList.appendChild(post);
-  userId++;
+const handleLoadComments = async (postId, postComments, postButton) => {
+  try {
+    const loadedComment = await loadComments(postId);
+    if (loadedComment) {
+      generateComment(loadedComment, postComments);
+      postButton.disabled = true;
+    }
+  } catch (error) {
+    console.error('Error while loading comments:', error);
+  }
 };
 
 document.querySelector('#posts__form').addEventListener('submit', async (e) => {
@@ -57,17 +36,15 @@ document.querySelector('#posts__form').addEventListener('submit', async (e) => {
     title: newPostTitle,
     body: newPostBody,
     userId
-  }
+  };
 
   if (newPostTitle && newPostBody) {
     try {
       const addedPost = await addPost(newPost);
 
       if (addedPost) {
-        generatePost(addedPost);
-
-        formTitle.value = '';
-        formBody.value = '';
+        generatePost(addedPost, handleLoadComments);
+        clearForm(formTitle, formBody);
       }
     } catch (error) {
       console.error('Error while adding post:', error);
@@ -75,4 +52,4 @@ document.querySelector('#posts__form').addEventListener('submit', async (e) => {
   }
 });
 
-loadInitialData();
+handleLoadData();
