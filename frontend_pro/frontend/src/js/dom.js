@@ -45,10 +45,21 @@ const generateListItem = (task, index) => {
   todoListItemCheckbox.type = 'checkbox';
   todoListItemCheckbox.checked = task.isDone;
 
-  todoListItemCheckbox.addEventListener('change', async (e) => {
-    await changeTask(task.id);
-    tasks[index].isDone = todoListItemCheckbox.checked;
-    e.target.previousElementSibling.classList.toggle('todoList__item__text-done');
+  todoListItemCheckbox.addEventListener('change', async () => {
+    try {
+      await changeTask(task.id);
+      tasks[index].isDone = todoListItemCheckbox.checked;
+
+      if (todoText) {
+        if (todoListItemCheckbox.checked) {
+          todoText.classList.add('todoList__item__text-done');
+        } else {
+          todoText.classList.remove('todoList__item__text-done');
+        }
+      }
+    } catch (error) {
+      console.error('Failed to change task status:', error);
+    }
   });
 
   editButton.addEventListener('click', async () => {
