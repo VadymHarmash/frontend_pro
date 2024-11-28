@@ -1,0 +1,47 @@
+.container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+}
+
+.counter-display {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #3e8e41;
+}
+
+button.clear {
+    background-color: #f44336;
+    margin-left: 10px;
+}
+
+button.clear:hover {
+    background-color: #e53935;
+}
