@@ -1,47 +1,69 @@
-.container {
+.wrapper {
     text-align: center;
-    font-family: Arial, sans-serif;
-    margin-top: 20px;
+    margin: 20px;
 }
 
-.counter-display {
+.emojiContainer {
     display: inline-block;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0 10px;
+    margin: 10px;
 }
 
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-button {
-    background-color: #4caf50;
-    color: white;
+.emojiButton {
+    background-color: transparent;
     border: none;
-    padding: 10px 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.emojiButton:hover {
+    transform: scale(1.1);
+}
+
+.emojiImage {
+    width: 50px;
+    height: 50px;
+}
+
+.emojiLikes {
+    font-size: 16px;
+    margin-top: 5px;
+    color: #333;
+}
+
+.resultsButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #45a049;
+.resultsButton:hover {
+    background-color: #0056b3;
 }
 
-button:active {
-    background-color: #3e8e41;
+.resultsContainer {
+    margin-top: 30px;
 }
 
-button.clear {
-    background-color: #f44336;
-    margin-left: 10px;
+.bestEmoji {
+    margin: 10px 0;
 }
 
-button.clear:hover {
-    background-color: #e53935;
+.clearButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.clearButton:hover {
+    background-color: #a71d2a;
 }

@@ -1,10 +1,10 @@
 import React from "react";
-import ClickCounter from "./components/ClickCounter";
+import EmojisWrapper from "./components/EmojisWrapper";
 
 function App() {
   return (
     <div className="App">
-      <ClickCounter />
+      <EmojisWrapper/>
     </div>
   );
 }
