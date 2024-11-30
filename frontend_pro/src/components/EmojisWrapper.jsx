@@ -1,63 +1,55 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { emojisData } from "../data/emojisData";
 import ResultButton from "./ResultButton";
 import EmojiButton from "./EmojiButton";
 
-class EmojisWrapper extends Component {
+export default function EmojisWrapper() {
+  const [data, setData] = useState(emojisData);
+  const [bestEmojis, setBestEmojis] = useState([]);
+  const [isShowResult, setShowResult] = useState(false);
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [...emojisData],
-      bestEmojis: [],
-      isShowResult: false
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("emojis"));
     if (storedData) {
-      this.setState({ data: storedData });
+      setData(storedData);
     }
-  }
+  }, [])
 
-  handleLike = (id) => {
-    const updatedData = this.state.data.map((item) =>
+  const handleLike = (id) => {
+    const updatedData = data.map((item) =>
       item.id === id ? { ...item, likes: item.likes + 1 } : item
     );
     localStorage.setItem("emojis", JSON.stringify(updatedData));
-    this.setState({ data: updatedData });
+    setData(updatedData);
   };
 
-  handleShowResults = () => {
-    const maxLikes = Math.max(...this.state.data.map((item) => item.likes));
-    const bestEmojis = this.state.data.filter((item) => item.likes === maxLikes);
-    this.setState({ isShowResult: true, bestEmojis });
+  const handleShowResults = () => {
+    const maxLikes = Math.max(...data.map((item) => item.likes));
+    const bestEmojis = data.filter((item) => item.likes === maxLikes);
+    setBestEmojis(bestEmojis);
+    setShowResult(true);
   };
 
-  handleClearResults = () => {
-    const resetData = this.state.data.map((item) => ({ ...item, likes: 0 }));
-    this.setState({ data: resetData, isShowResult: false, bestEmojis: [] });
+  const handleClearResults = () => {
+    const resetData = data.map((item) => ({ ...item, likes: 0 }));
+    setData(resetData);
+    setShowResult(false)
+    setBestEmojis([]);
     localStorage.setItem("emojis", JSON.stringify(resetData));
   };
 
-  render() {
-    return (
-      <div className="wrapper">
-        <div className="emojisContainer">
-          {this.state.data.map((emoji) => (
-            <EmojiButton key={emoji.id} emoji={emoji} handleLike={this.handleLike} />
-          ))}
-        </div>
-        <button className="resultsButton" onClick={this.handleShowResults}>Show results</button>
-        {this.state.isShowResult && <ResultButton
-          bestEmojis={this.state.bestEmojis}
-          handleClearResults={this.handleClearResults}
-        />}
+  return (
+    <div className="wrapper">
+      <div className="emojisContainer">
+        {data.map((emoji) => (
+          <EmojiButton key={emoji.id} emoji={emoji} handleLike={handleLike} />
+        ))}
       </div>
-    );
-  }
+      <button className="resultsButton" onClick={handleShowResults}>Show results</button>
+      {isShowResult && <ResultButton
+        bestEmojis={bestEmojis}
+        handleClearResults={handleClearResults}
+      />}
+    </div>
+  );
 }
-
-export default EmojisWrapper;
