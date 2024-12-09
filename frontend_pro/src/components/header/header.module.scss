@@ -1,0 +1,60 @@
+:root {
+  --bg-color-light: #fff;
+  --text-color-light: #000;
+  --link-hover-light: #007acc;
+  --bg-color-dark: #333;
+  --text-color-dark: #fff;
+  --link-hover-dark: #00bcd4;
+}
+
+[data-theme="light"] {
+  --bg-color: var(--bg-color-light);
+  --text-color: var(--text-color-light);
+  --link-hover: var(--link-hover-light);
+}
+
+[data-theme="dark"] {
+  --bg-color: var(--bg-color-dark);
+  --text-color: var(--text-color-dark);
+  --link-hover: var(--link-hover-dark);
+}
+
+.nav {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.navList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  margin: 0 15px;
+}
+
+.navLink {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--link-hover);
+  }
+}
+
+.navLinkActive {
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--link-hover);
+}
