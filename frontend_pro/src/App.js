@@ -1,8 +1,14 @@
 import React from "react";
-import { CounterPage } from "./pages/CounterPage";
+import { Main } from "./layout/Main";
+import { Footer } from "./layout/Footer";
 
 function App() {
-  return <CounterPage />;
+  return (
+    <>
+      <Main />
+      <Footer />
+    </>
+  );
 }
 
 export default App;
