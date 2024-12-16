@@ -1,12 +1,8 @@
 import React from "react";
-import FormPage from "./pages/FormPage";
+import { CounterPage } from "./pages/CounterPage";
 
 function App() {
-  return (
-    <>
-      <FormPage />
-    </>
-  );
+  return <CounterPage />;
 }
 
 export default App;
