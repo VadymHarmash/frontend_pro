@@ -17,7 +17,7 @@ export const Todo = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTodos());
-  }, []);
+  }, [dispatch]);
 
   const addNewTodo = () => {
     if (todoText.trim() !== "") {
@@ -54,44 +54,48 @@ export const Todo = () => {
 
   return (
     <div className={styles.todoContainer}>
+      <h1>Todo</h1>
+
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className={styles.todoList}>
-          {todos.map((todo) => (
-            <li key={todo.id} className={styles.todoItem}>
-              {editId === todo.id ? (
-                <input
-                  type="text"
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                />
-              ) : (
-                <span>{todo.title}</span>
-              )}
-              <div>
-                <button
-                  onClick={() => startEditing(todo)}
-                  className={styles.editButton}
-                >
-                  Edit
-                </button>
+        <>
+          <ul className={styles.todoList}>
+            {todos.map((todo) => (
+              <li key={todo.id} className={styles.todoItem}>
                 {editId === todo.id ? (
-                  <button onClick={saveEdit} className={styles.saveButton}>
-                    Save
-                  </button>
+                  <input
+                    type="text"
+                    value={editText}
+                    onChange={(e) => setEditText(e.target.value)}
+                  />
                 ) : (
-                  <button
-                    onClick={() => removeTodo(todo.id)}
-                    className={styles.deleteButton}
-                  >
-                    Delete
-                  </button>
+                  <span>{todo.title}</span>
                 )}
-              </div>
-            </li>
-          ))}
-        </ul>
+                <div>
+                  <button
+                    onClick={() => startEditing(todo)}
+                    className={styles.editButton}
+                  >
+                    Edit
+                  </button>
+                  {editId === todo.id ? (
+                    <button onClick={saveEdit} className={styles.saveButton}>
+                      Save
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => removeTodo(todo.id)}
+                      className={styles.deleteButton}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
       <div className={styles.inputField}>
         <input
