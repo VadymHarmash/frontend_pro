@@ -1,44 +1,45 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./header.module.scss";
+import { AppBar, Toolbar, Typography, Button, IconButton, MenuItem, Box } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { ThemeContext } from "../../context/ThemeContext";
 
 export default function Header() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <nav className={styles.nav}>
-      <ul className={styles.navList}>
-        <li className={styles.navItem}>
+    <AppBar position="static">
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6">My Website</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexGrow: 1,
+            gap: 2,
+          }}
+        >
           <NavLink
             to="/"
-            className={({ isActive }) => isActive ? styles.navLinkActive : styles.navLink}
+            style={{ textDecoration: "none" }}
           >
-            Home
+            <MenuItem sx={{ color: '#FFFFFF' }}>About Me</MenuItem>
           </NavLink>
-        </li>
-        <li className={styles.navItem}>
           <NavLink
-            to="/about"
-            className={({ isActive }) => isActive ? styles.navLinkActive : styles.navLink}
+            to="/todos"
+            style={{ textDecoration: "none" }}
           >
-            About Me
+            <MenuItem sx={{ color: '#FFFFFF' }}>Todos</MenuItem>
           </NavLink>
-        </li>
-        <li className={styles.navItem}>
-          <NavLink
-            to="/contacts"
-            className={({ isActive }) => isActive ? styles.navLinkActive : styles.navLink}
-          >
-            Contacts
-          </NavLink>
-        </li>
-      </ul>
-      <div>
-        <button onClick={toggleTheme}>
+        </Box>
+        <Button color="inherit" onClick={toggleTheme}>
           {theme === "light" ? "Dark Mode" : "Light Mode"}
-        </button>
-      </div>
-    </nav>
+        </Button>
+      </Toolbar>
+    </AppBar>
   );
 }

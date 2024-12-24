@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { loadData } from "../../utils/api";
-import styles from './todosList.module.scss';
+import { Box, Typography, CircularProgress, List, ListItem, ListItemText } from "@mui/material";
 
 export default function TodosList() {
   const [data, setData] = useState([]);
@@ -15,19 +15,23 @@ export default function TodosList() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Main</h1>
+    <Box sx={{ padding: 4, maxWidth: 600, margin: "0 auto" }}>
+      <Typography variant="h4" gutterBottom>
+        Main
+      </Typography>
       {data.length ? (
-        <ul className={styles.list}>
-          {data.map(item => (
-            <li key={item.id} className={styles.listItem}>
-              {item.title}
-            </li>
+        <List>
+          {data.map((item) => (
+            <ListItem key={item.id}>
+              <ListItemText primary={item.title} />
+            </ListItem>
           ))}
-        </ul>
+        </List>
       ) : (
-        <p className={styles.loading}>Loading...</p>
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100px" }}>
+          <CircularProgress />
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }

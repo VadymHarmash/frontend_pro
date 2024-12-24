@@ -1,15 +1,13 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
-import MainPage from "../pages/main";
 import AboutPage from "../pages/about";
-import ContactsPage from "../pages/contants";
+import TodosPage from "../pages/todos";
 
 export default function Routers() {
   return (
     <Routes>
-      <Route path="" element={<MainPage />} />
-      <Route path="about" element={<AboutPage />} />
-      <Route path="contacts" element={<ContactsPage />} />
+      <Route path="" element={<AboutPage />} />
+      <Route path="todos" element={<TodosPage />} />
     </Routes>
   );
 }
