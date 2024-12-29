@@ -1,0 +1,85 @@
+/* Index.css */
+.container {
+  font-family: "Arial", sans-serif;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.header-light {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.header-dark {
+  background-color: #343a40;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.header-light a,
+.header-dark a {
+  margin-right: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.header-light a {
+  color: #000000;
+}
+
+.header-dark a {
+  color: #ffffff;
+}
+
+.header-light a:hover,
+.header-dark a:hover {
+  text-decoration: underline;
+  color: #007bff; /* Blue highlight */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.header-light button {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.header-dark button {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+button:hover {
+  opacity: 0.8;
+}
