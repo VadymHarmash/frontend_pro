@@ -1,5 +1,23 @@
 @import "styles/index";
 
+:root {
+  --bg-body-light: #f4f4f9;
+  --bg-body-dark: #2d2d2d;
+}
+
+[data-theme="light"] {
+  --bg-body: var(--bg-body-light);
+}
+
+[data-theme="dark"] {
+  --bg-body: var(--bg-body-dark);
+}
+
+.hotelsContainer {
+  transition: all 0.3s ease;
+  background-color: var(--bg-body);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,6 +25,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-body);
+  transition: all 0.3s ease;
 }
 
 code {

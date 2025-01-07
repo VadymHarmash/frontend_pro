@@ -1,0 +1,88 @@
+:root {
+  --bg-input-light: #f5f5f5;
+  --bg-input-dark: rgba(68, 68, 68, 0.27);
+  --text-title-light: #333333;
+  --text-title-dark: #e5e5e5;
+  --box-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --box-shadow-dark: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --border-color: #000000;
+  --submit-bg: #e78a0e;
+  --submit-text: #ffffff;
+}
+
+[data-theme="light"] {
+  --bg-input-color: var(--bg-input-light);
+  --text-title: var(--text-title-light);
+  --box-shadow: var(--box-shadow-light);
+}
+
+[data-theme="dark"] {
+  --bg-input-color: var(--bg-input-dark);
+  --text-title: var(--text-title-dark);
+  --box-shadow: var(--box-shadow-dark);
+}
+
+.bookingForm {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  & > div {
+    background-color: var(--bg-input-color);
+    width: 15%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease-in-out;
+
+    input,
+    div {
+      border: none !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      color: var(--text-title);
+      font-size: 16px;
+      height: 100% !important;
+    }
+
+    input{
+      padding: 4px 8px;
+    }
+
+    .ant-select-selector {
+      padding: 0 !important;
+    }
+
+    .ant-picker {
+      width: 100%;
+    }
+
+    & > span {
+      color: red;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  div:nth-child(3),
+  div:nth-child(4){
+    background-color: var(--bg-body);
+  }
+
+  div:last-child input[type="submit"] {
+    background-color: var(--submit-bg) !important;
+    color: var(--submit-text);
+    font-weight: 700;
+    width: 100%;
+    padding: 4px 8px;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+  }
+}

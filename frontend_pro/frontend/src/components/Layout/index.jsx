@@ -1,16 +1,18 @@
 import { Outlet } from "react-router-dom";
+
 import { NavBar } from "../NavBar";
-import "./Layout.scss";
+
+import styles from "./layout.module.scss";
 
 export const Layout = () => {
   return (
-    <div>
-      <header className="header-light">
+    <>
+      <header className={styles.header}>
         <NavBar />
       </header>
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };

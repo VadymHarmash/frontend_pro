@@ -1,0 +1,17 @@
+:root {
+  --bg-container-light: #f4f4f9;
+  --bg-container-dark: #2d2d2d;
+}
+
+[data-theme="light"] {
+  --bg-container: var(--bg-container-light);
+}
+
+[data-theme="dark"] {
+  --bg-container: var(--bg-container-dark);
+}
+
+.hotelsContainer {
+  transition: all 0.3s ease;
+  background-color: var(--bg-container);
+}

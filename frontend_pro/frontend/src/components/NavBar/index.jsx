@@ -1,34 +1,46 @@
-import React, { useState } from "react";
-import { Menu } from "antd";
+import React from "react";
+import { Button, Flex, Menu } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
+import light from "../../assets/icons/light-theme.png";
+import dark from "../../assets/icons/dark-theme.png";
+import { toggleTheme } from "../../store/slices/themeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./navbar.module.scss";
 
 export const NavBar = () => {
   const location = useLocation();
-  const [current, setCurrent] = useState(location.pathname);
+  const dispatch = useDispatch();
+  const { isThemeLight } = useSelector((state) => state.themeReducer);
 
-  const handleClick = (e) => {
-    setCurrent(e.key);
-  };
+  const navLinks = [
+    {
+      key: "/",
+      label: <NavLink to="/">Home</NavLink>,
+    },
+    {
+      key: "/hotels",
+      label: <NavLink to="/hotels">Hotels</NavLink>,
+    },
+    {
+      key: "/about",
+      label: <NavLink to="/about">About</NavLink>,
+    },
+  ];
 
   return (
-      <div>
-        <Menu
-          onClick={handleClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          theme="light"
-        >
-          <Menu.Item key="/">
-            <NavLink to="/">Home</NavLink>
-          </Menu.Item>
-          <Menu.Item key="/about">
-            <NavLink to="/about">About</NavLink>
-          </Menu.Item>
-          <Menu.Item key="/hotels">
-            <NavLink to="/hotels">Hotels</NavLink>
-          </Menu.Item>
-        </Menu>
-        <button>Change Theme</button>
-      </div>
+    <Flex justify={"space-between"} align={"center"}>
+      <Menu
+        selectedKeys={[location.pathname]}
+        mode="horizontal"
+        items={navLinks}
+        className={styles.navbar__menu}
+      />
+      <Button
+        className={styles.navbar__button}
+        onClick={() => dispatch(toggleTheme())}
+      >
+        <img src={isThemeLight ? dark : light} alt="Change theme" />
+      </Button>
+    </Flex>
   );
 };

@@ -1,0 +1,21 @@
+:root {
+  --text-light: #333333;
+  --text-dark: #e5e5e5;
+}
+
+[data-theme="light"] {
+  --text-color: var(--text-light);
+}
+
+[data-theme="dark"] {
+  --text-color: var(--text-dark);
+}
+
+.filteredHotelsContainer{
+  margin-top: 20px;
+}
+
+p {
+  margin-bottom: 20px;
+  color: var(--text-color);
+}

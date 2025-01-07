@@ -1,0 +1,36 @@
+:root {
+  --bg-navbar-light: #f4f4f9;
+  --bg-navbar-dark: #2d2d2d;
+  --text-navbar-light: #333333;
+  --text-navbar-dark: #e5e5e5;
+}
+
+[data-theme="light"] {
+  --bg-navbar: var(--bg-navbar-light);
+  --text-navbar: var(--text-navbar-light);
+}
+
+[data-theme="dark"] {
+  --bg-navbar: var(--bg-navbar-dark);
+  --text-navbar: var(--text-navbar-dark);
+}
+
+.navbar {
+  transition: all 0.3s ease;
+  background-color: var(--bg-navbar);
+  color: var(--text-navbar);
+  &__menu {
+    width: 90%;
+    background-color: var(--bg-navbar);
+    transition: all 0.3s ease;
+    border: none;
+    a {
+      color: var(--text-navbar) !important;
+    }
+  }
+  &__button{
+    width: 20px;
+    border: none;
+    background-color: var(--bg-navbar);
+  }
+}

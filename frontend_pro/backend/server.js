@@ -21,6 +21,17 @@ app.post('/hotels', (req, res) => {
     res.json(hotels);
 });
 
+app.get('/hotels/:id', (req, res) => {
+  const { id } = req.params;
+  const hotel = data.hotels.find((hotel) => hotel.id === parseInt(id, 10));
+
+  if (hotel) {
+    res.json(hotel);
+  } else {
+    res.status(404).json({ message: 'Hotel not found' });
+  }
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

@@ -1,5 +1,10 @@
 import React from "react";
+import { HotelsContainer } from "../../components/HotelsContainer";
 
 export const Hotels = () => {
-  return <div>Hotels</div>;
+  return (
+    <div className="container">
+      <HotelsContainer></HotelsContainer>
+    </div>
+  );
 };

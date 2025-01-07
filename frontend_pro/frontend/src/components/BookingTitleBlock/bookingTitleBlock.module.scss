@@ -1,0 +1,29 @@
+:root {
+  --text-title-light: #333333;
+  --text-title-dark: #e5e5e5;
+  --text-booking-color: #e78a0e;
+}
+
+[data-theme="light"] {
+  --text-title: var(--text-title-light);
+}
+
+[data-theme="dark"] {
+  --text-title: var(--text-title-dark);
+}
+
+.bookingTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  h1 {
+    color: var(--text-title);
+    margin-bottom: 8px;
+  }
+  p {
+    color: var(--text-title);
+  }
+  span {
+    color: var(--text-booking-color);
+  }
+}
