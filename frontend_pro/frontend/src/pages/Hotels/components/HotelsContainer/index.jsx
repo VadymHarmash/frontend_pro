@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchHotels } from "../../store/thunks/hotelsThunk";
+import { fetchHotels } from "../../../../store/thunks/hotelsThunk";
 
-import { HotelCard } from "../HotelCard";
+import { HotelCard } from "../../../../components/HotelCard";
 
 import { Row, Col, Pagination } from "antd";
 

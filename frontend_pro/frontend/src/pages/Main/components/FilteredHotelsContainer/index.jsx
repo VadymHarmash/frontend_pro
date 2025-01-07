@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { clearHotels } from "../../store/slices/hotelsSlice";
+import { clearHotels } from "../../../../store/slices/hotelsSlice";
 
-import { HotelCard } from "../HotelCard";
+import { HotelCard } from "../../../../components/HotelCard";
 
 import { Row, Col } from "antd";
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { BookingForm } from "../../components/BookingForm";
-import { BookingTitleBlock } from "../../components/BookingTitleBlock";
-import { FilteredHotelsContainer } from "../../components/FilteredHotelsContainer";
+import { BookingForm } from "./components/BookingForm";
+import { BookingTitleBlock } from "./components/BookingTitleBlock";
+import { FilteredHotelsContainer } from "./components/FilteredHotelsContainer";
 
 export const Main = () => {
   return (

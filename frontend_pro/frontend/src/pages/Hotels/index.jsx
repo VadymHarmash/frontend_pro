@@ -1,5 +1,5 @@
 import React from "react";
-import { HotelsContainer } from "../../components/HotelsContainer";
+import { HotelsContainer } from "./components/HotelsContainer";
 
 export const Hotels = () => {
   return (

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { Formik } from "formik";
 
-import { fetchDestinations } from "../../store/thunks/destinationThunk";
-import { fetchHotelsByCity } from "../../store/thunks/hotelsThunk";
+import { fetchDestinations } from "../../../../store/thunks/destinationThunk";
+import { fetchHotelsByCity } from "../../../../store/thunks/hotelsThunk";
 
 import { DatePicker, message, Select } from "antd";
 

@@ -3,9 +3,9 @@ import * as PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { findHotel } from "../../store/thunks/hotelsThunk";
+import { findHotel } from "../../../../store/thunks/hotelsThunk";
 
-import { Loader } from "../../loaders/Loader";
+import { Loader } from "../../../../loaders/Loader";
 
 import styles from "./hotelInfo.module.scss";
 

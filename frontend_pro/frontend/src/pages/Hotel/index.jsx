@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { HotelInfo } from "../../components/HotelInfo";
+import { HotelInfo } from "./components/HotelInfo";
 import { Loader } from "../../loaders/Loader";
 
 export const Hotel = () => {
